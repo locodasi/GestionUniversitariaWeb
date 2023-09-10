@@ -1,0 +1,32 @@
+{% extends "nav.html" %}
+{% load static %}
+
+{% block content %}
+<label id="id" class="d-none">{{id}}</label>
+<h1 class="text-center mt-2">{{titulo}}</h1>
+
+<h3 hidden class="text-center mt-3 text-danger" id="bandera">Cambios no guardados</h3>
+
+<div class="container mt-5"> <!-- Opcional: Si deseas agregar margen lateral -->
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <input type="text" id="busqueda" class="form-control border-dark" placeholder="Escribe para buscar...">
+            <pre id="pre" class="mt-4 mb-2"></pre>
+            <div id="opciones" class="options-list border border-dark bg-white overflow-auto max-height-160 mb-3 white-space: nowrap; overflow-x: auto;">
+              <!-- Las opciones se agregarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container text-center">
+    <button id="guardar" class="btn btn-primary btn-lg custom-button mx-auto">Guardar</button>
+</div>
+
+<div class="text-center mt-2">
+    <p>Doble click para sumar o sacar la correlativa</p>
+  </div>
+
+<script src={% static "correlativas.js" %}></script>
+
+{% endblock%}

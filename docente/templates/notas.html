@@ -1,0 +1,83 @@
+{% extends "navDocente.html" %}
+{% load static %}
+
+{% block content %}
+<label class="d-none" id="idAlumno">{{idAlumno}}</label><label class="d-none" id="idMateria">{{idMateria}}</label>
+<main>
+    <section>
+        <h2 class="text-center mt-2">{{titulo}}</h2>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <form action="" method="POST" class="card card-body mt-3 border-dark" id="form">
+                    {% csrf_token %}
+                    <h1 class="text-center">Cargar nota</h1>          
+                    <input type="hidden" id="id" name="id" value={{id}}>
+                    <div id="errores">
+                        <ul>
+                          {% for error in errores %}
+                          <li class="error mt-3 ml-1">{{error}}</li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="nota">Nota:</label>
+                                <input type="number" class="form-control" id="nota" name="nota" min="1" max="10" required placeholder="0.4" autofocus value={{datos.nota}}>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="tipo">Tipo:</label>
+                                <select class="form-control" id="tipo" name="tipo" required>
+                                    {%for tipo in tipos %}
+                                    <option value="{{tipo}}" {% if datos.tipo == tipo %} selected {% endif %} >{{tipo}}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="fecha">Fecha:</label>
+                                <input type="date" class="form-control" id="fecha" name="fecha" value={{datos.fecha}}>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="observacion">Observación:</label>
+                        <textarea class="form-control" id="observacion" name="observacion" rows="4" placeholder="observacion">{{datos.observacion}}</textarea>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <button id="enviar" class="btn btn-primary btn-sm custom-button">Enviar</button>
+                        <button {% if not id %} hidden {% endif %} id="eliminar" formaction={% url 'docente:eliminarNota'%} class="btn btn-danger btn-sm custom-button" formnovalidate>Eliminar</button>
+                        <button id="limpiar" class="btn btn-primary btn-sm custom-button">Limpiar</button>
+                      </div>
+                      <div class="d-flex">
+                        <button hidden id="aprobar" formaction={% url 'docente:aprobar' idMateria idAlumno %} class="btn btn-secondary flex-grow-1 btn-sm custom-button">Aprobar</button>
+                      </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="container mt-1"> <!-- Opcional: Si deseas agregar margen lateral -->
+            <div class="row">
+                <div class="col-8 mx-auto">
+                    <input type="text" id="busqueda" class="form-control border-dark" placeholder="Escribe para buscar...">
+                    <pre id="pre" class="mt-4 mb-2"></pre>
+                    <div id="opciones" class="options-list border border-dark bg-white overflow-auto max-height-160 mb-3">
+                      <!-- Las opciones se agregarán dinámicamente con JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-2">
+            <p>Click sobre el elemento para modificarlo</p>
+        </div>
+
+    </section>
+</main>
+
+<script src={% static "notas.js" %}></script>
+
+{% endblock%}

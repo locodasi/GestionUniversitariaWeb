@@ -1,0 +1,93 @@
+{% extends nav %}
+
+{% load static %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lucas Da Silva Fradkin">
+    <meta name="description" content="Pagina de cambio de contraseña para la ULD (Universidad Lucas Dasilva)">
+    <meta name="keyword" content="ULD, Lucas, Da, Silva, cambio, contraseña, universitaria, pagina, campus">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'estilos_aut.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'footer.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>ULD - Cambiar contraseña</title>
+</head>
+<body> 
+    <main class="container">
+        <div class="row">
+            <section class="col-md-5 offset-md-4">
+                <form action="" method="POST" class="card card-body mt-5">
+                    {% csrf_token %}
+                    <h1 class="text-center">Cambiar contraseña</h1>
+    
+                    <p class="text-center"></p>
+
+                    <ul>
+                        {% for error in erroresUsuario %}
+                        <li class="error">{{error}}</li>
+                        {% endfor %}
+                    </ul>
+                    
+                    
+                    <div class="mb-3">
+                        <label for="id_password">Antigua contraseña:</label>
+
+                        <div class="contenedor-contra">
+                            <input type="password" name="vieja_contra" autocomplete="new-password" required="" id="vieja_contra" class="form-control contraseña" placeholder="Escribe tu contraseña" autofocus>
+
+                            <button class="mostrarContra" type="button">
+                                <i class="fa fa-eye-slash iconoDeOjo" id="ojo1"></i>
+                            </button>
+                        </div>   
+                    </div>
+                
+
+                        <div class="mb-3">
+                            <label for="id_password">Nueva contraseña:</label>
+    
+                            <div class="contenedor-contra">
+                                <input type="password" name="nueva_contra" autocomplete="new-password" required="" id="nueva_contra" class="form-control contraseña" placeholder="Escribe tu contraseña">
+    
+                                <button class="mostrarContra" type="button">
+                                    <i class="fa fa-eye-slash iconoDeOjo" id="ojo2"></i>
+                                </button>
+                            </div>   
+                        </div>
+
+                    <span class="helptext"><ul><li>La contraseña no puede ser similar a otra informacion personal.</li><li>La contraseña debe contener al menos 8 caractreres.</li><li>No puede ser una contraseña comun.</li><li>La contraseña no puede ser enteramente numerica.</li></ul></span>
+ 
+                    <div class="mb-3">
+                        <label for="id_password">Confirmar nueva contraseña:</label>
+
+                        <div class="contenedor-contra">
+                            <input type="password" name="nueva_contra2" autocomplete="new-password" required="" id="nueva_contra2" class="form-control contraseña" placeholder="Escribe tu contraseña">
+
+                            <button class="mostrarContra" type="button">
+                                <i class="fa fa-eye-slash iconoDeOjo" id="ojo3"></i>
+                            </button>
+                        </div>   
+                    </div>
+
+                    <ul>
+                        {% for error in erroresContra %}
+                        <li class="error">{{error}}</li>
+                        {% endfor %}
+                    </ul>
+
+
+
+                    <button class="btn btn-primary mt-2" id="enviar">
+                        Ingresar
+                    </button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script src={% static "cambiarContra.js" %}></script>
+</body>
+</html>
+{% endblock %}

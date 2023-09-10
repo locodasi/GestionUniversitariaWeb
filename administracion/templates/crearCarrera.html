@@ -1,0 +1,57 @@
+{% extends "nav.html" %}
+{% load static %}
+
+{% block content %}
+<main class="container">
+  <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <form id="form" method="POST" class="card card-body mt-3 border-dark">
+            {% csrf_token %}
+            <h1 class="text-center">Crear carrera</h1>          
+            <input type="hidden" id="id" name="id" value={{id}}>
+            
+            {{form}}
+
+            <div id="errores">
+              <ul>
+                {% for error in errores %}
+                <li class="error mt-3 ml-1">{{error}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+              <button id="enviar" class="btn btn-primary btn-sm custom-button">Enviar</button>
+              <button {% if not id %} hidden {% endif %} id="eliminar" formaction={% url 'administracion:eliminarCarrera'%} class="btn btn-danger btn-sm custom-button">Eliminar</button>
+              <button id="limpiar" class="btn btn-primary btn-sm custom-button">Limpiar</button>
+            </div>
+            <div class="d-flex">
+              <button {% if not id %} hidden {% endif %} id="verAlumnos" formaction={% url 'administracion:alumnosCursando' "Carrera"%} class="btn btn-secondary flex-grow-1 btn-sm custom-button">Ver alumnos</button>
+            </div>
+        </form>
+      </div>
+  </div>
+</main>
+
+<div class="container mt-1"> <!-- Opcional: Si deseas agregar margen lateral -->
+  <div class="row">
+      <div class="col-8 mx-auto">
+          <input type="text" id="busqueda" class="form-control border-dark" placeholder="Escribe para buscar...">
+          <pre id="pre" class="mt-4 mb-2"></pre>
+          <div id="opciones" class="options-list border border-dark bg-white overflow-auto max-height-160 mb-3">
+            <!-- Las opciones se agregarán dinámicamente con JavaScript -->
+        </div>
+      </div>
+  </div>
+</div>
+
+<div class="text-center mt-2">
+  <p>Click sobre el elemento para modificarlo</p>
+</div>
+
+
+
+<script src={% static "crearCarrera.js" %}></script>
+
+{% endblock%}
+

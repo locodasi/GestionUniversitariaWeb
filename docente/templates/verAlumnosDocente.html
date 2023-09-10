@@ -1,0 +1,44 @@
+{% extends "navDocente.html" %}
+{% load static %}
+
+{% block content %}
+<main>
+    <section>
+        <h1 class="text-center mt-2">Ver alumnos de las materias</h1>
+        <div class="text-center mt-4">
+            <label for="selectCarrera">Carrera:</label>
+            <select name="selectCarrera" id="selectCarrera">
+                {% for carrera in carreras%}
+                <option value={{carrera.0}}>{{carrera.1}}</option>
+                {% endfor %}
+            </select>
+            <label for="selectMateria">Materia:</label>
+            <select name="selectMateria" id="selectMateria">
+                {% for materia in materias%}
+                <option value={{materia.id}}>{{materia.nombre}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="container mt-4"> <!-- Opcional: Si deseas agregar margen lateral -->
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <input type="text" id="busqueda" class="form-control border-dark" placeholder="Escribe para buscar...">
+                    <pre id="pre" class="mt-4 mb-2" style="font-size: 14px;"></pre>
+                    <div id="opciones" class="options-list border border-dark bg-white overflow-auto max-height-160 mb-3 white-space: nowrap; overflow-x: auto;">
+                      <!-- Las opciones se agregarán dinámicamente con JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-2">
+            <p>Doble click para crear las notas del alumno</p>
+        </div>
+
+    </section>
+</main>
+
+<script src={% static "verAlumnosDocente.js" %}></script>
+
+{% endblock%}

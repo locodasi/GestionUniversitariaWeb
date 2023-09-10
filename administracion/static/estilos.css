@@ -1,0 +1,43 @@
+body{
+    background-color: #6495ED;
+}
+
+pre {
+    width: 100%;
+    display: block;
+    white-space: pre-wrap; /* Esto asegura que el texto preformateado se ajuste al ancho */
+    font-size: 18px;
+}
+
+.custom-select {
+    height: auto; /* Establece la altura automática */
+    max-height: 160px; /* Altura máxima para mostrar hasta 4 opciones */
+    overflow-y: auto; /* Habilita el desplazamiento vertical si es necesario */
+}
+
+.options-list pre:hover {
+    background-color: #3498db; /* Un tono de azul menos brillante */
+    border: 1px solid #2980b9; /* Agrega un borde de 1px con otro tono de azul */
+    cursor: pointer;
+    overflow-x: auto;
+}
+
+.max-height-160 {
+    max-height: 160; /* Cambia el valor según tus necesidades */
+}
+
+.custom-button {
+    width: 32%; /* Ajusta el ancho de los botones según tus necesidades */
+    margin: 0.5rem; /* Ajusta el espacio entre los botones según tus necesidades */
+}
+
+/*Para eliminar el span de ayuda de creacion de contraseña al creare usuario en alumno y docente*/
+span.helptext {
+    display: none;
+}
+
+/*Para eliminar los errores en ingles que ya valido yo*/
+ul.errorList {
+    display: none;
+}
+

@@ -1,0 +1,39 @@
+{% extends "nav.html" %}
+{% load static %}
+
+{% block content %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    pre {
+      font-size: 14px;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+    <label class="d-none" id="carrera">{{carrera}}</label>
+    <label class="d-none" id="id">{{id}}</label>
+    <h1 class="text-center mt-4">{{titulo}}</h1>
+
+    <div class="container mt-1"> <!-- Opcional: Si deseas agregar margen lateral -->
+        <div class="row">
+            <div class="col-12 mx-auto">
+                <input type="text" id="busqueda" class="form-control border-dark" placeholder="Escribe para buscar...">
+                <pre id="pre" class="mt-4 mb-2"></pre>
+                <div id="opciones" class="options-list border border-dark bg-white overflow-auto max-height-160 mb-3 white-space: nowrap; overflow-x: auto;">
+                  <!-- Las opciones se agregarán dinámicamente con JavaScript -->
+                </div>
+            </div>
+        </div>
+      </div>
+
+
+<script src={% static "verAlumnos.js" %}></script>
+
+</body>
+</html>
+
+{% endblock%}

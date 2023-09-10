@@ -1,0 +1,24 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Establece la altura mínima del cuerpo al 100% de la ventana gráfica */
+    display: flex;
+    flex-direction: column;
+}
+
+footer {
+    background-color: white;
+    padding: 0px; /* Reduce el espaciado interno del footer */
+    text-align: center;
+    margin-top: auto; /* Coloca el footer al final del contenedor flex (la página) */
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Distribuir los elementos uniformemente en la línea */
+    padding: 0 20px; /* Espaciado horizontal para los textos */
+}
+
+.green-text {
+    color: green;
+}

@@ -1,0 +1,65 @@
+{% extends "navAlumno.html" %}
+{% load static %}
+
+{% block content %}
+{% csrf_token %}
+<h1 class="text-center">Seleccion de materias</h1>
+
+<div class="text-center container">
+    <h3 class="text-center mt-3">Carrera</h3>
+    <select name="" id="carrera" >
+        {% for carrera in carreras %}
+        <option value={{carrera.carrera_id}}>{{carrera.carrera__nombre}}</option>
+        {% endfor %}
+    </select>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 mt-3 text-center">
+            <label for="materias">Materias</label>
+            <select id="materias" class="form-control" multiple size="10">
+                {% for materia in materias %}
+                <option value={{materia.0}}>{{materia.1}}</option>
+                {% endfor %}
+            </select>
+            <button id="cursar" class="btn btn-primary btn-block mt-3">Cursar</button>
+        </div>
+        <div class="col-md-4 mt-3 text-center">
+            <label for="cursando">Cursando</label>
+            <select id="cursadas" class="form-control verNotas" multiple size="10">
+                {% for cursando in cursadas %}
+                <option value={{cursando.0}}>{{cursando.1}}</option>
+                {% endfor %}
+            </select>
+            <button id="dejar" class="btn btn-primary btn-block mt-3">Dejar</button>
+        </div>
+
+        <div class="col-md-4 mt-3 text-center">
+            <label for="aprobadas">Aprobadas</label>
+            <select id="aprobadas" class="form-control verNotas" multiple size="10">
+                {% for aprobada in aprobadas %}
+                <option value={{aprobada.0}}>{{aprobada.1}}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-12 text-center mt-4">
+    <small>Ctrl + Click para selección múltiple</small>
+</div>
+
+<div class="text-center mt-2">
+    <p>Doble click para ver las notas, solo en cursadas y aprobadas</p>
+</div>
+
+<div class="text-center mt-2">
+    <p>Al cursar o dejar una materia se envia un mail al alumno, pero ahora no funciona porque no iba a poner mis datos reales de email y contraseña pra hacer de remitente</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+<script src={% static "seleccionMaterias.js" %}></script>
+
+{% endblock %}

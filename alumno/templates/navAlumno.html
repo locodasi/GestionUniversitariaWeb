@@ -1,0 +1,51 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lucas Da Silva Fradkin">
+    <meta name="description" content="Pagina de alumnos para la ULD (Universidad Lucas Dasilva)">
+    <meta name="keyword" content="ULD, Lucas, Da, Silva, alumno, alumnos, universitaria, pagina, campus">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'estilos.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'footer.css' %}">
+    <link rel="icon" href="{% static 'icon.ico' %}">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <!--<link rel="icon" href={% static 'icono.ico' %}>-->
+    <title>ULD - Alumno</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+          <a class="navbar-brand" href={% url "autenticacion:cambiar_contraseña" %}>{{user.username}}</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link" href={% url "alumno:seleccion_materias" %}>Seleccion de materias</a>
+            </li>  
+            <li class="nav-item">
+              <a class="nav-link" href={% url "alumno:ver_materias" %}>Ver materias</a>
+            </li> 
+            <li class="nav-item">
+              <a class="nav-link" href={% url "autenticacion:cerrar_sesion" %}>Salir</a>
+            </li>  
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+    {% block content %}
+    {% endblock%}
+
+    <footer>
+      <div class="footer-content">
+          <p class="green-text">Creador: Lucas Da Silva Fradkin</p>
+          <p class="green-text">Email: fradkinlucas@hotmail.com</p>
+          <p class="green-text">Telefono: +54 1144116596</p>
+      </div>
+  </footer>
+</body>
+</html>

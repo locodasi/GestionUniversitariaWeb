@@ -1,0 +1,32 @@
+body{
+    background-color: #6495ED;
+}
+
+.contenedor-contra {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.mostrarContra {
+    background-color: transparent;
+    border: none;
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.iconoDeOjo {
+    font-size: 20px;
+    color: #999;
+}
+
+/* Estilos para quitar el ícono de error en campos is-invalid */
+.form-control.is-invalid {
+    background-image: none; /* Eliminar el ícono */
+    border-color: #dc3545;/* Mantener el borde de error rojo */
+}
+

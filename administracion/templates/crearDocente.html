@@ -1,0 +1,68 @@
+{% extends "nav.html" %}
+{% load static %}
+
+{% block content %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    pre {
+      font-size: 14px;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body>
+  
+
+<main class="container">
+  <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <form id="form" method="POST" class="card card-body mt-3 border-dark">
+            {% csrf_token %}
+            <h1 class="text-center">Crear Docente</h1>          
+            <input type="hidden" id="id" name="id" value={{id}}>
+            
+            {{form}}
+
+            <div id="errores">
+              <ul>
+                {% for error in errores %}
+                <li class="error mt-3 ml-1">{{error}}</li>
+                {% endfor %}
+              </ul>
+            </div>
+            
+            <div class="d-flex justify-content-between">
+              <button id="enviar" class="btn btn-primary btn-sm custom-button">Enviar</button>
+              <button id="eliminar" {% if not id %} hidden {% endif %} formaction={% url 'administracion:eliminarDocente'%} class="btn btn-danger btn-sm custom-button">Eliminar</button>
+              <button id="limpiar" class="btn btn-primary btn-sm custom-button">Limpiar</button>
+          </div>
+        </form>
+      </div>
+  </div>
+</main>
+
+<div class="container mt-1"> <!-- Opcional: Si deseas agregar margen lateral -->
+  <div class="row">
+      <div class="col-12 mx-auto">
+          <input type="text" id="busqueda" class="form-control border-dark" placeholder="Escribe para buscar...">
+          <pre id="pre" class="mt-4 mb-2"></pre>
+          <div id="opciones" class="options-list border border-dark bg-white overflow-auto max-height-160 mb-3 white-space: nowrap; overflow-x: auto;">
+            <!-- Las opciones se agregarán dinámicamente con JavaScript -->
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="text-center mt-2">
+  <p>Click sobre el elemento para modificarlo</p>
+</div>
+
+<script src={% static "crearDocentes.js" %}></script>
+
+</body>
+</html>
+
+{% endblock%}

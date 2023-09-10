@@ -1,0 +1,74 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Lucas Da Silva Fradkin">
+    <meta name="description" content="Pagina universitaria, para demostrar mis habilidades full stack, con Django, JS y SQL">
+    <meta name="keyword" content="ULD, Lucas, Da, Silva, campus, login, inicio, sesion, registro, pagina">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <link rel="icon" href="{% static 'icon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'estilos_aut.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'footer.css' %}">
+    <title>ULD - Login</title>
+</head>
+<body>
+
+    <h1 class="text-center mt-5">ULD</h1>
+    <div class="d-flex justify-content-center">
+        <small class="text-center">Universidad Lucas Da Silva</small>
+    </div>
+
+    <main class="container">
+        <div class="row">
+            <section class="col-md-4 offset-md-4">
+                <form action="" method="POST" class="card card-body mt-5" id="form">
+                    {% csrf_token %}
+                    <h1 class="text-center">Login</h1>
+    
+                    <p class="text-center" id="error">{{error}}</p>
+
+                    <div class="mb-3">
+                        <label for="id_username">DNI:</label>
+                        <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" placeholder="Escribe tu DNI" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="id_password">Contraseña:</label>
+
+                        <div class="contenedor-contra">
+                            <input type="password" name="password" autocomplete="new-password" required="" id="id_password" class="form-control" placeholder="Escribe tu contraseña">
+
+                            <button class="mostrarContra" id="mostrarContra" type="button">
+                                <i class="fa fa-eye-slash iconoDeOjo" id="iconoDeOjo"></i>
+                            </button>
+                        </div>   
+                    </div>
+    
+    
+                    <button class="btn btn-primary" id="enviar">
+                        Ingresar
+                    </button>   
+                </form>
+            </section>
+        </div>
+
+        <div class="text-center mt-2">
+            <p>admin admin para entrar como administrador, luego crear sus propios alumnos y docentes para probar la pagina</p>
+            <p>Luego de iniciar sesion, haciendo click en tu usuraio de la barra navegadora (A la izquierda) podes cambiar la contraseña</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <p class="green-text">Creador: Lucas Da Silva Fradkin</p>
+            <p class="green-text">Email: fradkinlucas@hotmail.com</p>
+            <p class="green-text">Telefono: +54 1144116596</p>
+        </div>
+    </footer>
+
+    <script src={% static "inicio_sesion.js" %}></script>
+</body>
+</html>
