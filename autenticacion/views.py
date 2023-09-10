@@ -22,9 +22,10 @@ def iniciar_sesion(request):
             "error": "Usario o contraseña incorrecta"
             })
        else:
+            
             login(request,u)
             dicc = obtenerDictConGrupos()
-            return redirect(dicc.get(request.user.grupo).get("url")) 
+            return redirect("administracion:crearCarrera") 
 
 @login_required
 def cerrar_sesion(request):
