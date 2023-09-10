@@ -8,9 +8,9 @@ from .validar import *
 # Create your views here.
 def iniciar_sesion(request):  
     if request.method == "GET":     
-        c = CustomUser(username="admin")
-        c.set_password("admin")
-        c.save() 
+        # c = CustomUser(username="admin")
+        # c.set_password("admin")
+        # c.save() 
         return render(request,"inicio_sesion.html",{
             "form": AuthenticationForm
         })
