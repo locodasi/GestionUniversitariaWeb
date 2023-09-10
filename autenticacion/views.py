@@ -7,12 +7,10 @@ from .validar import *
 
 # Create your views here.
 def iniciar_sesion(request):  
-    if request.method == "GET":   
-        CustomUser.objects.all().delete()  
-        c = CustomUser(username="admin",grupo="Admin")
-        c.set_password("admin")
-        c.save() 
-        
+    if request.method == "GET":     
+        # c = CustomUser(username="admin", grupo="admin")
+        # c.set_password("admin")
+        # c.save() 
         return render(request,"inicio_sesion.html",{
             "form": AuthenticationForm
         })
@@ -24,10 +22,9 @@ def iniciar_sesion(request):
             "error": "Usario o contraseña incorrecta"
             })
        else:
-            
             login(request,u)
             dicc = obtenerDictConGrupos()
-            return redirect("administracion:crearCarrera") 
+            return redirect(dicc.get(request.user.grupo).get("url")) 
 
 @login_required
 def cerrar_sesion(request):
