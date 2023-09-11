@@ -4,7 +4,7 @@ from . import views
 app_name = 'alumno'
 
 urlpatterns = [
-    path('a', views.seleccion_materias, name = 'seleccion_materias'),
+    path('', views.seleccion_materias, name = 'seleccion_materias'),
     path('obtenerMateriasJson/<int:id>', views.obtener_materias, name = 'obtener_materias'),
     path('cursarMaterias/', views.cursar_materias, name = 'cursar_materias'),
     path('dejarMaterias/', views.dejar_materias, name = 'dejar_materias'),
