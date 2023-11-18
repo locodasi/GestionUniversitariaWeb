@@ -7,7 +7,20 @@ from .validar import *
 
 # Create your views here.
 def iniciar_sesion(request):  
-    if request.method == "GET":     
+    if request.method == "GET":  
+        #Este codigo te crea el usuario admin si no lo tenes 
+        if(CustomUser.objects.get(username="admin") is None):  
+            user = CustomUser.objects.create(
+                username="admin",
+                is_staff=True,
+                is_superuser=True,
+                grupo = "Admin"
+            )
+            
+            user.set_password("admin")
+            user.save()
+        
+        
         return render(request,"inicio_sesion.html",{
             "form": AuthenticationForm
         })
@@ -46,7 +59,7 @@ def cambiar_contraseña(request):
                 login(request,request.user)               
                 return redirect(dicc.get(request.user.grupo).get("url")) 
             else:
-                return render(request,"cambiarContra.html",{"erroresContra":errores})  
+                return render(request,"cambiarContra.html",{"erroresContra":errores,"nav":dicc.get(request.user.grupo).get("nav")})  
             
         else:
-            return render(request,"cambiarContra.html",{"erroresUsuario":["La antigua contraseña es incorrecta"]})  
+            return render(request,"cambiarContra.html",{"erroresUsuario":["La antigua contraseña es incorrecta"],"nav":dicc.get(request.user.grupo).get("nav")})  
